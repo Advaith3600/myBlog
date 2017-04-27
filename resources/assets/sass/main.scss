@@ -96,6 +96,14 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+        .third-parallax {
+            width: 100%;
+            height: 700px;
+            background: url('images/5.jpg');
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     }
     .nav {
         a.toggle-button {
@@ -112,10 +120,22 @@
             background-repeat: no-repeat;
             background-size: 100% 500px;
         }
+        .first-parallax-writting {
+            div {
+                margin-bottom: 40px;
+            }
+        }
         .second-parallax {
             width: 100%;
             height: 500px;
             background: url('images/3.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .third-parallax {
+            width: 100%;
+            height: 500px;
+            background: url('images/5.jpg');
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -133,7 +153,39 @@
         margin-top: 180px;
         margin-bottom: 80px;
     }
-    .second-parallax {
+    .second-parallax, .third-parallax {
         position: relative;
+    }
+}
+a.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 70px;
+    text-align: center;
+    text-decoration: none!important;
+    margin: 5px 2px;
+    transition: 0.4s;
+    &:hover {
+        opacity: 0.7;
+    }
+    &.fa-facebook {
+        background: #3B5998;
+        color: white;
+    }
+    &.fa-twitter {
+        background: #55ACEE;
+        color: white;
+    }
+    &.fa-youtube {
+        background: #bb0000;
+        color: white;
+    }
+    &.fa-pinterest {
+        background: #cb2027;
+        color: white;
+    }
+    &.fa-github {
+        background: #222;
+        color: white;
     }
 }
