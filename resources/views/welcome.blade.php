@@ -27,7 +27,6 @@
                             <a href="http://facebook.com/Advaith3600" class="fa fa-facebook"></a>
                             <a href="http://twitter.com/Advaith3600" class="fa fa-twitter"></a>
                             <a href="https://www.youtube.com/channel/UCetLIJPB6gJI06jpi5XF3fg" class="fa fa-youtube"></a>
-                            <a href="#" class="fa fa-pinterest"></a>
                             <a href="http://github.com/Advaith3600" class="fa fa-github"></a>
                         </div>
                     </div>
@@ -58,7 +57,7 @@
                     <h1 class="w3-black w3-padding-24 container-fluid">NEWS / UPDATE</h1>
                 </div>
             </div>
-            <div class="thrid-parallax-writting w3-padding-48 container-fluid">
+            <div class="thrid-parallax-writting w3-padding-32 container-fluid">
                 <div class="well" style="margin: 0;">
 
                 </div>
@@ -68,7 +67,6 @@
                     <a href="http://facebook.com/Advaith3600" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
                     <a href="http://twitter.com/Advaith3600" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
                     <a href="https://www.youtube.com/channel/UCetLIJPB6gJI06jpi5XF3fg" class="w3-hover-text-red"><i class="fa fa-youtube"></i></a>
-                    <a href="#" class="w3-hover-text-black"><i class="fa fa-pinterest"></i></a>
                     <a href="https://www.github.com/Advaith3600" class="w3-hover-text-black"><i class="fa fa-github"></i></a>
                 </div>
                 <p>Copyright © 2017 | All rights reserved |Developed by Advaith A J</p>

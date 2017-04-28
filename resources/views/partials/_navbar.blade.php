@@ -1,12 +1,18 @@
 <div class="nav-side">
     <ul>
+        <li><a href="{{ url('/contact_us') }}">Contact Us</a></li>
         @if (Auth::guest())
             <li><a href="{{ route('login') }}">Login</a></li>
             <li><a href="{{ route('register') }}">Register</a></li>
+        @else
+            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
         @endif
     </ul>
 </div>
-<div>
+<div style="overflow: hidden;">
     <nav class="nav">
         <a href="{{ url('/') }}">
             <b>Advaith A J</b>
@@ -18,9 +24,15 @@
                 <div class="bar3"></div>
             </a>
             <span>
+                <a href="{{ url('/contact_us') }}">Contact Us</a>
                 @if (Auth::guest())
                     <a href="{{ route('login') }}">Login</a>
                     <a href="{{ route('register') }}">Register</a>
+                @else
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                 @endif
             </span>
         </div>
