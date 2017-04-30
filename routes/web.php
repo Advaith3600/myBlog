@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware('auth')->get('/home', 'HomeController@index');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/home', 'HomeController@index');
+    Route::post('/home', 'HomeController@updateProfileInfo');
+});
+
 Route::get('/contact_us', 'HomeController@getContact_us');
 Route::post('/contact_us', 'HomeController@postContact_us');

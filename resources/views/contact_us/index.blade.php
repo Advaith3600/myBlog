@@ -4,7 +4,7 @@
         <title>Advaith A J - Contact Us</title>
         @include('partials._head')
     </head>
-    <body style="background: url(images/6.jpg) center; background-repeat: no-repeat; background-size: auto 100%; background-attachment: fixed;">
+    <body style="background: url(images/6.jpg) center; background-repeat: no-repeat; background-size: auto 100vh; background-attachment: fixed;">
         @include('partials._navbar')
         <div style="margin-top: 100px;">
             <div class="container-fluid">
@@ -16,13 +16,13 @@
                         <form method="POST" style="overflow: hidden;">
                             {{ csrf_field() }}
                             <div class="w3-half w3-margin-bottom">
-                                <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="Name" name="name">
+                                <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="Name" name="name" value="{{ Auth::check() ? Auth::user()->name : old('name') }}">
                             </div>
                             <div class="w3-half w3-margin-bottom">
-                                <input class="w3-input w3-border w3-hover-light-grey" type="email" placeholder="Email" name="email" value="{{ Auth::check() ? Auth::user()->email : '' }}">
+                                <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="Email" name="email" value="{{ Auth::check() ? Auth::user()->email : old('email') }}">
                             </div>
                             <div class="w3-col">
-                                <textarea class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="Comment" name="comment" rows="5" cols="40"></textarea>
+                                <textarea class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="Comment" name="comment" rows="5" cols="40">{{ old('comment') }}</textarea>
                             </div>
                             <button class="w3-btn w3-black w3-section w3-right" style="vertical-align:middle" type="submit" value="SEND MESSAGE"><span>SEND MESSAGE</span></button>
                         </form>

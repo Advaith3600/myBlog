@@ -63,8 +63,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'name' => ucfirst($data['name']),
             'email' => $data['email'],
+            'profile' => "https://www.gravatar.com/avatar/" . md5(strtolower(trim($data['email']))) . "?s=200&d=monsterid",
+            'profile_bg' => "https://source.unsplash.com/category/nature/1920x1080",
             'password' => bcrypt($data['password']),
         ]);
     }

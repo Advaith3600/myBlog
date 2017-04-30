@@ -1,4 +1,4 @@
-.nav {
+nav.nav {
     background: transparent;
     box-shadow: none;
     width: 100%;
@@ -83,7 +83,7 @@
         .first-parallax {
             width: 100%;
             height: 500px;
-            background: url('images/1.jpg');
+            background: url('/images/1.jpg');
             background-attachment: fixed;
             background-repeat: no-repeat;
             background-size: 100% 500px;
@@ -91,7 +91,7 @@
         .second-parallax {
             width: 100%;
             height: 700px;
-            background: url('images/3.jpg');
+            background: url('/images/3.jpg');
             background-attachment: fixed;
             background-repeat: no-repeat;
             background-size: cover;
@@ -99,15 +99,28 @@
         .third-parallax {
             width: 100%;
             height: 700px;
-            background: url('images/5.jpg');
+            background: url('/images/5.jpg');
             background-attachment: fixed;
             background-repeat: no-repeat;
             background-size: cover;
         }
     }
-    .nav {
+    nav.nav {
         a.toggle-button {
             display: none;
+        }
+    }
+    .home-div {
+        .home-profile_bg {
+            background-repeat: no-repeat!important;
+            background-attachment: fixed!important;
+            background-size: 100% 400px!important;
+            height: 400px;
+        }
+        img.profile {
+            position: absolute;
+            bottom: 0;
+            transform: translate(50%, 50%);
         }
     }
 }
@@ -116,7 +129,7 @@
         .first-parallax {
             width: 100%;
             height: 500px;
-            background: url('images/1.jpg');
+            background: url('/images/1.jpg');
             background-repeat: no-repeat;
             background-size: 100% 500px;
         }
@@ -128,23 +141,36 @@
         .second-parallax {
             width: 100%;
             height: 500px;
-            background: url('images/3.jpg');
+            background: url('/images/3.jpg');
             background-repeat: no-repeat;
             background-size: cover;
         }
         .third-parallax {
             width: 100%;
             height: 500px;
-            background: url('images/5.jpg');
+            background: url('/images/5.jpg');
             background-repeat: no-repeat;
             background-size: cover;
         }
     }
-    .nav {
+    nav.nav {
         .pull-right {
             span {
                 display: none;
             }
+        }
+    }
+    .home-div {
+        .home-profile_bg {
+            background-repeat: no-repeat!important;
+            background-size: 100% 400px!important;
+            height: 400px;
+        }
+        img.profile {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 50%);
         }
     }
 }
