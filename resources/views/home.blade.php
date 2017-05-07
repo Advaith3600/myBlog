@@ -31,6 +31,10 @@
                         <label for="password_confirmation">Retype your password:</label>
                         <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="confirm password...">
                     </div>
+                    <div class="form-group">
+                        <label for="bio">Bio:</label>
+                        <textarea class="form-control" id="bio" name="bio" placeholder="Bio..." rows="10">{{ Auth::user()->bio }}</textarea>
+                    </div>
                     <input type="submit" value="Update Profile" class="btn btn-success">
                 </form>
                 @if (count($errors) > 0)

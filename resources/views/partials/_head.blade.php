@@ -2,6 +2,12 @@
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
+<noscript>
+    <div class="noscript-bg container-fluid w3-red w3-padding text-center">
+        Please enable Javascript for the best experience.<br />
+        If you dont know how to enable Javascript then view <a href="https://www.google.co.in/#q=how+to+enable+javascript">this</a>
+    </div>
+</noscript>
 <script>
     window.Laravel = {!! json_encode([
         'csrfToken' => csrf_token(),

@@ -59,6 +59,7 @@ class HomeController extends Controller
         if ($request->password != null) {
             $user->password = Hash::make($request->password);
         }
+        $user->bio = $request->bio;
         $user->save();
 
         Session::flash('success', 'User have been successfully updated');
