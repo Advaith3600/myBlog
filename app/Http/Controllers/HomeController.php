@@ -8,7 +8,7 @@ use Session;
 use Auth;
 use App\User;
 use Hash;
-use Dropbox as dbx;
+use App\News;
 
 class HomeController extends Controller
 {
@@ -23,6 +23,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function welcome() {
+        $news = News::all()->sortByDesc('id');
+        return view('welcome')->withNews($news);
+    }
     public function index()
     {
         return view('home');

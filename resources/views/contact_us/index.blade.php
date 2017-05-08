@@ -4,7 +4,7 @@
         <title>Advaith A J - Contact Us</title>
         @include('partials._head')
     </head>
-    <body style="background: url(images/6.jpg) center; background-repeat: no-repeat; background-size: auto 100vh; background-attachment: fixed;">
+    <body style="min-height: 100vh; background: url(/images/6.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
         @include('partials._navbar')
         <div style="margin-top: 100px;">
             <div class="container-fluid">

@@ -11,15 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@welcome');
 
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index');
     Route::post('/home', 'HomeController@updateProfileInfo');
+
+    Route::group(['prefix' => 'admin'], function() {
+        Route::get('/', 'AdminController@index');
+        Route::post('/news', 'AdminController@news');
+    });
 });
 
 Route::get('/contact_us', 'HomeController@getContact_us');

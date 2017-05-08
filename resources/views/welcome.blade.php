@@ -47,7 +47,7 @@
                         <div class="container-fluid">
                             <p class="h3">KESAVAPURAM SREEKRISHNASWAMY TEMPLE</p>
                             <p>More details not available</p>
-                            <p>Because this website is under construction. It should be hosted inorder to give information regarding that.</p>
+                            <p>Because this website is under construction. It should be hosted inorder to give information regarding this.</p>
                         </div>
                     </div>
                 </div>
@@ -58,8 +58,35 @@
                 </div>
             </div>
             <div class="thrid-parallax-writting w3-padding-32 container-fluid">
-                <div class="well" style="margin: 0;">
-
+                <div class="news-show col-sm-6 col-sm-offset-3">
+                    <div class="slideshow-container w3-card-4">
+                        <?php $c = count($news); $i = 1; ?>
+                        @foreach ($news as $new)
+                            <div class="mySlides fade in img-rounded">
+                                <?php
+                                    echo "<div class='numbertext'>" . $i . " / " . $c . "</div>";
+                                    $i++;
+                                ?>
+                                @if ($new->type == 'image')
+                                    <img src="{{ $new->attachment }}" style="width: 100%; height: 500px;">
+                                @else
+                                    <iframe src="{{ $new->attachment }}" style="width: 100%; height: 500px;" frameborder="0" allowfullscreen></iframe>
+                                @endif
+                                <div class="text-center w3-text-black w3-padding-16">{{ $new->description }}</div>
+                            </div>
+                        @endforeach
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    </div>
+                    <br>
+                    <div style="text-align:center">
+                        <?php
+                            $count = count($news) + 1;
+                            for ($i=1; $i < $count; $i++) {
+                                echo "<span class='dot' onclick='currentSlide(" . $i . ")''></span>";
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
             <footer class="w3-center w3-padding-16 w3-opacity w3-hover-opacity-off" style="background-color: green; color: white!important">
@@ -72,5 +99,31 @@
                 <p>Copyright © 2017 | All rights reserved |Developed by Advaith A J</p>
             </footer>
         </div>
+        <script>
+            var slideIndex = 1;
+            showSlides(slideIndex);
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("dot");
+                if (n > slides.length) {slideIndex = 1}
+                if (n < 1) {slideIndex = slides.length}
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex-1].style.display = "block";
+                dots[slideIndex-1].className += " active";
+                setTimeout(showSlides, 2000);
+            }
+        </script>
     </body>
 </html>
