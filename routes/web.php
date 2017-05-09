@@ -18,6 +18,9 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index');
     Route::post('/home', 'HomeController@updateProfileInfo');
+    Route::get('/chat', 'ChatController@index');
+    Route::get('/chat/messages', 'ChatController@messages');
+    Route::post('/chat/messages', 'ChatController@postMessages');
 
     Route::group(['prefix' => 'admin'], function() {
         Route::get('/', 'AdminController@index');

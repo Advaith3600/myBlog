@@ -15,8 +15,45 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('chat-message', require('./components/Chat-Message.vue'));
+Vue.component('chat-log', require('./components/Chat-Log.vue'));
+Vue.component('chat-composer', require('./components/Chat-Composer.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        messages: [],
+        usersInRoom: []
+    },
+    methods: {
+        addMessage(message) {
+            this.messages.push(message);
+            axios.post('/chat/messages', message).then(response => {
+
+            });
+        }
+    },
+    created() {
+        axios.get('/chat/messages').then(response => {
+            this.messages = response.data;
+        });
+
+        Echo.join('chatroom')
+            .here((users) => {
+                this.usersInRoom = users;
+            })
+            .joining((user) => {
+                this.usersInRoom.push(user);
+            })
+            .leaving((user) => {
+                this.usersInRoom = this.usersInRoom.filter(u => u!= user);
+            })
+            .listen('ChatPosted', (e) => {
+                this.messages.push({
+                    message: e.chat.message,
+                    user: e.user.name
+                });
+                console.log(e);
+            });
+    }
 });
