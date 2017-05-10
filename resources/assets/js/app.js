@@ -31,6 +31,14 @@ const app = new Vue({
             axios.post('/chat/messages', message).then(response => {
 
             });
+        },
+        ViewUsers(e) {
+            e.preventDefault();
+            $('.view-users').slideDown('slow');
+        },
+        hideUsers(e) {
+            e.preventDefault();
+            $('.view-users').slideUp('slow');
         }
     },
     created() {

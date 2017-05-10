@@ -277,3 +277,20 @@ a.fa {
         .prev, .next, .text {font-size: 11px}
     }
 }
+.view-users {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1003;
+    background: rgba(0,0,0,0.8);
+    .close {
+        color: white!important;
+        margin-right: 10px;
+    }
+    .users {
+        margin-top: 20px;
+    }
+}

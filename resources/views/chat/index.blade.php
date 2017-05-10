@@ -5,14 +5,38 @@
         @include('partials._head')
         <meta name="username" content="{{ Auth::user()->name }}" />
     </head>
-    <body>
+    <body style="min-height: 100vh; background: url(/images/8.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
         @include('partials._navbar')
-        <div class="col-sm-8 col-sm-offset-2" style="margin-top: 80px;" id="app">
-            <h1 class="text-center">Public Chat <span class="badge">@{{ usersInRoom.length }}</span></h1>
-            <hr />
-            <div>
-                <chat-log v-bind:messages="messages"></chat-log>
-                <chat-composer v-on:messagesent="addMessage"></chat-composer>
+        <div id="app">
+            <div class="view-users">
+                <div class="text-center w3-text-white w3-margin-top">
+                    <a href="#" class="close" v-on:click="hideUsers">&times;</a>
+                    <h1>View Users in Chat Room</h1>
+                    <hr />
+                    Number of users = @{{ usersInRoom.length }}
+                    <div class="users">
+                        <div class="col-sm-3" v-for="userInRoom in usersInRoom" style="overflow: hidden;">
+                            <img :src="userInRoom.profile" width="50" height="50">
+                            @{{ userInRoom.name }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-md-offset-2" style="margin-top: 80px;">
+                <div class="panel panel-default w3-card-4">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="overflow: hidden; font-size: 30px!important;">
+                            Public Chat
+                            <span class="pull-right"><a href="#" class="btn btn-info" v-on:click="ViewUsers">View Users in Room</a></span>
+                        </h3>
+                    </div>
+                    <div class="panel-body" style="height: 700px; overflow-y: scroll; background: url(images/9.jpg); background-repeat: no-repeat; background-size: auto 100%; background-position: center;">
+                        <chat-log v-bind:messages="messages"></chat-log>
+                    </div>
+                    <div class="panel-footer">
+                        <chat-composer v-on:messagesent="addMessage"></chat-composer>
+                    </div>
+                </div>
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
