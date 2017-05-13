@@ -68,9 +68,13 @@
                                     $i++;
                                 ?>
                                 @if ($new->type == 'image')
-                                    <img src="{{ $new->attachment }}" style="width: 100%; height: 500px;">
+                                    <div style="height: 500px;">
+                                        <img src="{{ $new->attachment }}" style="width: 100%; height: 500px;">
+                                    </div>
                                 @else
-                                    <iframe src="{{ $new->attachment }}" style="width: 100%; height: 500px;" frameborder="0" allowfullscreen></iframe>
+                                    <div style="height: 500px;">
+                                        <iframe src="{{ $new->attachment }}" style="width: 100%; height: 500px;" frameborder="0" allowfullscreen></iframe>
+                                    </div>
                                 @endif
                                 <div class="text-center w3-text-black w3-padding-16">{{ $new->description }}</div>
                             </div>

@@ -59,9 +59,9 @@ const app = new Vue({
             .listen('ChatPosted', (e) => {
                 this.messages.push({
                     message: e.chat.message,
-                    user: e.user.name
+                    user: e.user
                 });
-                console.log(e);
+                $(".panel-body").animate({ scrollTop: $(".panel-body").height() }, 1000);
             });
     }
 });

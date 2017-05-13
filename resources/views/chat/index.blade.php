@@ -11,13 +11,17 @@
             <div class="view-users">
                 <div class="text-center w3-text-white w3-margin-top">
                     <a href="#" class="close" v-on:click="hideUsers">&times;</a>
-                    <h1>View Users in Chat Room</h1>
+                    <h1>Users in Chat Room</h1>
                     <hr />
                     Number of users = @{{ usersInRoom.length }}
-                    <div class="users">
-                        <div class="col-sm-3" v-for="userInRoom in usersInRoom" style="overflow: hidden;">
-                            <img :src="userInRoom.profile" width="50" height="50">
-                            @{{ userInRoom.name }}
+                    <div class="users" style="overflow: hidden;">
+                        <div class="col-sm-3 w3-margin-bottom" v-for="userInRoom in usersInRoom" style="overflow: hidden;">
+                            <div class="u-1">
+                                <img :src="userInRoom.profile" width="50" height="50">
+                            </div>
+                            <div class="u-2">
+                                @{{ userInRoom.name }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -40,5 +44,10 @@
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
+        <script>
+        $(document).ready(function() {
+            $(".panel-body").animate({ scrollTop: $(".panel-body").height() }, 1000);
+        });
+</script>
     </body>
 </html>

@@ -1,6 +1,5 @@
 nav.nav {
     background: transparent;
-    box-shadow: none;
     width: 100%;
     height: auto;
     position: absolute;
@@ -292,5 +291,15 @@ a.fa {
     }
     .users {
         margin-top: 20px;
+        .u-1, .u-2 {
+            overflow: hidden;
+            padding: 1px;
+            vertical-align: middle;
+        }
+        @media screen and (min-width: 767px) {
+            .u-1, .u-2 {
+                display: inline-block;
+            }
+        }
     }
 }
