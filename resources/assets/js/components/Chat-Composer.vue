@@ -14,13 +14,16 @@ export default {
     },
     methods: {
         sendMessage() {
-            this.$emit('messagesent', {
-                message: this.messageText,
-                user: {
-                    name: $('meta[name=username]').attr("content")
-                }
-            });
-            this.messageText = '';
+            if (this.messageText != '') {
+                this.$emit('messagesent', {
+                    message: this.messageText,
+                    user: {
+                        name: $('meta[name=username]').attr("content")
+                    }
+                });
+                $(".panel-body").animate({ scrollTop: $(".panel-body").height() }, 1000);
+                this.messageText = '';
+            }
         }
     }
 }

@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJSQkxYTy7BTsRcLzVmnsJvPA&key=AIzaSyCsasGKAJpAGW4pTLYxRtKqLboL-fhuypE" allowfullscreen></iframe>
+                    <div id="googleMap" style="width:100%;height:400px;"></div>
                 </div>
             </div>
             <div class="second-parallax">
@@ -103,6 +103,7 @@
                 <p>Copyright © 2017 | All rights reserved |Developed by Advaith A J</p>
             </footer>
         </div>
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
         <script>
             var slideIndex = 1;
             showSlides(slideIndex);
@@ -128,6 +129,22 @@
                 dots[slideIndex-1].className += " active";
                 setTimeout(showSlides, 2000);
             }
+            var myCenter = new google.maps.LatLng(8.4554519, 76.9499618);
+            function initialize() {
+                var mapProp = {
+                    center: myCenter,
+                    zoom: 12,
+                    scrollwheel: false,
+                    draggable: false,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                var marker = new google.maps.Marker({
+                    position: myCenter,
+                });
+                marker.setMap(map);
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
         </script>
     </body>
 </html>

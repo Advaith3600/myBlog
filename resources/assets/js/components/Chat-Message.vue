@@ -1,6 +1,12 @@
 <template lang="html">
     <div style="width: 100%; overflow: hidden;">
-        <div class="chat-message img-rounded w3-white w3-card-2 w3-margin-top">
+        <div class="chat-message-2 w3-card" v-if="message.user.name === currentUser">
+            <div class="chat-message-user">
+                <small>{{ message.user.name }}</small>
+            </div>
+            <p>{{ message.message }}</p>
+        </div>
+        <div class="chat-message-1 w3-card" v-else>
             <div class="chat-message-user">
                 <small>{{ message.user.name }}</small>
             </div>
@@ -11,25 +17,34 @@
 
 <script>
 export default {
-    props: [
-        'message'
-    ]
+    props: ['message'],
+    data() {
+        return {
+            currentUser: $('meta[name=username]').attr("content")
+        }
+    }
 }
 </script>
 
 <style lang="css">
-    .chat-message {
-        width: fit-content;
-        display: block;
+    .chat-message-1 {
+        padding-left: 0;
+        margin-left: 0;
+        margin-right: 150px;
+        background: white;
+        border-radius: 4px;
+        padding: 5px 8px;
+    }
+    .chat-message-2 {
+        padding-left: 0;
+        margin-left: 150px;
+        margin-right: 0;
+        background: white;
+        border-radius: 4px;
+        padding: 5px 8px;
+        text-align: right;
     }
     .chat-message-user {
-        font-size: 12px;
         border-bottom: 1px solid grey;
-        padding: 0 12px;
-        width: 100%;
-    }
-    .chat-message p {
-        padding: 5px 12px;
-        margin: 0;
     }
 </style>

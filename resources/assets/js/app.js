@@ -18,6 +18,7 @@ window.Vue = require('vue');
 Vue.component('chat-message', require('./components/Chat-Message.vue'));
 Vue.component('chat-log', require('./components/Chat-Log.vue'));
 Vue.component('chat-composer', require('./components/Chat-Composer.vue'));
+Vue.component('chat-user', require('./components/Chat-User.vue'));
 
 const app = new Vue({
     el: '#app',
@@ -35,10 +36,6 @@ const app = new Vue({
         ViewUsers(e) {
             e.preventDefault();
             $('.view-users').slideDown('slow');
-        },
-        hideUsers(e) {
-            e.preventDefault();
-            $('.view-users').slideUp('slow');
         }
     },
     created() {

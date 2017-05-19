@@ -10,20 +10,7 @@
         <div id="app">
             <div class="view-users">
                 <div class="text-center w3-text-white w3-margin-top">
-                    <a href="#" class="close" v-on:click="hideUsers">&times;</a>
-                    <h1>Users in Chat Room</h1>
-                    <hr />
-                    Number of users = @{{ usersInRoom.length }}
-                    <div class="users" style="overflow: hidden;">
-                        <div class="col-sm-3 w3-margin-bottom" v-for="userInRoom in usersInRoom" style="overflow: hidden;">
-                            <div class="u-1">
-                                <img :src="userInRoom.profile" width="50" height="50">
-                            </div>
-                            <div class="u-2">
-                                @{{ userInRoom.name }}
-                            </div>
-                        </div>
-                    </div>
+                    <chat-user v-bind:users-in-room="usersInRoom"></chat-user>
                 </div>
             </div>
             <div class="col-md-8 col-md-offset-2" style="margin-top: 80px;">
@@ -34,7 +21,7 @@
                             <span class="pull-right"><a href="#" class="btn btn-info" v-on:click="ViewUsers">View Users in Room</a></span>
                         </h3>
                     </div>
-                    <div class="panel-body" style="height: 700px; overflow-y: scroll; background: url(images/9.jpg); background-repeat: no-repeat; background-size: auto 100%; background-position: center;">
+                    <div class="panel-body" style="height: 700px; overflow-y: scroll; background: url(images/9.jpg); background-repeat: no-repeat; background-size: auto 100%; background-position: center; padding: 0;">
                         <chat-log v-bind:messages="messages"></chat-log>
                     </div>
                     <div class="panel-footer">
