@@ -13,7 +13,7 @@ class ChatController extends Controller
         return view('chat.index');
     }
     public function messages() {
-        return Chat::with('user')->get();
+        return Chat::with('user')->get()->sortBy('id');
     }
     public function postMessages(Request $request) {
         $user = Auth::user();

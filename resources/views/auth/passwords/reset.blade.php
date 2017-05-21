@@ -24,7 +24,7 @@
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" autofocus placeholder="email...">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -38,7 +38,12 @@
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <div style="position: relative;">
+                                    <div style="position: absolute; right: 0; cursor: pointer; height: 100%; width: 35px; text-align: center;" id="password-toggle">
+                                        <i class="glyphicon glyphicon-eye-open" aria-hidden="true" style="top: 50%; transform: translate(0, -60%)" onclick="showPassword()"></i>
+                                    </div>
+                                    <input id="password" type="password" class="form-control password" name="password" style="padding-right: 35px;" placeholder="password...">
+                                </div>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -51,7 +56,12 @@
                         <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <div style="position: relative;">
+                                    <div style="position: absolute; right: 0; cursor: pointer; height: 100%; width: 35px; text-align: center;" id="password-toggle">
+                                        <i class="glyphicon glyphicon-eye-open" aria-hidden="true" style="top: 50%; transform: translate(0, -60%)" onclick="showPassword()"></i>
+                                    </div>
+                                    <input id="password-confirm" type="password" class="form-control password" name="password_confirmation" style="padding-right: 35px;" placeholder="confirm password...">
+                                </div>
 
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">

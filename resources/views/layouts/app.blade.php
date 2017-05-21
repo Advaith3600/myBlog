@@ -10,5 +10,17 @@
                 @yield('content')
             </div>
         </div>
+        <script>
+            function showPassword() {
+                $('.password').attr("type", "text");
+                $('.glyphicon.glyphicon-eye-open').attr("onclick", 'hidePassword()');
+                $('.glyphicon.glyphicon-eye-open').attr("class", "glyphicon glyphicon-eye-close");
+            }
+            function hidePassword() {
+                $('.password').attr('type', 'password');
+                $('.glyphicon.glyphicon-eye-close').attr("onclick", 'showPassword()');
+                $('.glyphicon.glyphicon-eye-close').attr("class", "glyphicon glyphicon-eye-open");
+            }
+        </script>
     </body>
 </html>

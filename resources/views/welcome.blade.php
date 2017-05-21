@@ -17,17 +17,19 @@
                 <div class="col-sm-6">
                     <h1>ABOUT ME</h1>
                     <div>
-                        My name is Advaith A J. I am 15 years old.<br>
-                        Have lot of experience on web development.<br>
-                        Have done many works.<br><br>
-                        Tech I use are -- Laravel, Bootstrap, W3CSS, SASS, Vue js, Jquery, Javascript, Css, etc.
-                        <br><br>
-                        I live near Sree Pazhanchira Devi Temple, India, Kerala, Trivandrum, Paravankunnu.
+                        Hey... I am Advaith A J. I am 15 years old boy who has intrest in Web page developing
+                        <br /><br />
+                        I have done many local works on different languages.<br />
+                        Done many works on web, you can search my Github account to know. Some are listed in  the website.
+                        <br /><br />
+                        I use Laravel as framework, Sass as css processor, Vue js and Jquery for Javascript, Bootstrap and W3 CSS for styling and lot more
+                        <br /><br />
+                        You can contact me through Facebook, Twitter, Whatsapp, Gmail, etc.
                         <div class="w3-margin-top">
-                            <a href="http://facebook.com/Advaith3600" class="fa fa-facebook"></a>
-                            <a href="http://twitter.com/Advaith3600" class="fa fa-twitter"></a>
-                            <a href="https://www.youtube.com/channel/UCetLIJPB6gJI06jpi5XF3fg" class="fa fa-youtube"></a>
-                            <a href="http://github.com/Advaith3600" class="fa fa-github"></a>
+                            <a href="http://facebook.com/Advaith3600" class="fa fa-facebook" title="Facebook"></a>
+                            <a href="http://twitter.com/Advaith3600" class="fa fa-twitter" title="Twitter"></a>
+                            <a href="https://www.youtube.com/channel/UCetLIJPB6gJI06jpi5XF3fg" class="fa fa-youtube" title="YouTube"></a>
+                            <a href="http://github.com/Advaith3600" class="fa fa-github" title="GitHub"></a>
                         </div>
                     </div>
                 </div>
@@ -57,39 +59,46 @@
                     <h1 class="w3-black w3-padding-24 container-fluid">NEWS / UPDATE</h1>
                 </div>
             </div>
-            <div class="thrid-parallax-writting w3-padding-32 container-fluid">
-                <div class="news-show col-sm-6 col-sm-offset-3">
-                    <div class="slideshow-container w3-card-4">
+            <div class="thrid-parallax-writting">
+                <div class="news-show">
+                    <div class="w3-padding-32" style="overflow: hidden; padding-bottom: 0!important; padding-left: 40px; padding-right: 40px;">
                         <?php $c = count($news); $i = 1; ?>
                         @foreach ($news as $new)
-                            <div class="mySlides fade in img-rounded">
-                                <?php
-                                    echo "<div class='numbertext'>" . $i . " / " . $c . "</div>";
-                                    $i++;
-                                ?>
-                                @if ($new->type == 'image')
-                                    <div style="height: 500px;">
-                                        <img src="{{ $new->attachment }}" style="width: 100%; height: 500px;">
+                            <div class="mySlides fade in">
+                                <div class="col-sm-7">
+                                    <?php
+                                        echo "<div class='numbertext'>" . $i . " / " . $c . "</div>";
+                                        $i++;
+                                    ?>
+                                    @if ($new->type == 'image')
+                                        <div style="height: 500px;">
+                                            <img src="{{ $new->attachment }}" style="width: 100%; height: 500px;">
+                                        </div>
+                                    @else
+                                        <div style="height: 500px;">
+                                            <iframe src="{{ $new->attachment }}" style="width: 100%; height: 500px;" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-sm-5 textheight">
+                                    <div class="text-center w3-text-white w3-padding-16">
+                                        <div>
+                                            {{ $new->description }}
+                                        </div>
                                     </div>
-                                @else
-                                    <div style="height: 500px;">
-                                        <iframe src="{{ $new->attachment }}" style="width: 100%; height: 500px;" frameborder="0" allowfullscreen></iframe>
-                                    </div>
-                                @endif
-                                <div class="text-center w3-text-black w3-padding-16">{{ $new->description }}</div>
+                                </div>
                             </div>
                         @endforeach
                         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                         <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                    </div>
-                    <br>
-                    <div style="text-align:center">
-                        <?php
-                            $count = count($news) + 1;
-                            for ($i=1; $i < $count; $i++) {
-                                echo "<span class='dot' onclick='currentSlide(" . $i . ")''></span>";
-                            }
-                        ?>
+                        <div class="col-sm-12 w3-padding-16" style="text-align:center">
+                            <?php
+                                $count = count($news) + 1;
+                                for ($i=1; $i < $count; $i++) {
+                                    echo "<span class='dot' onclick='currentSlide(" . $i . ")''></span>";
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
