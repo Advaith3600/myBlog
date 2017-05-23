@@ -213,6 +213,18 @@ a.fa {
 .news-show {
     position: relative;
     background: #333;
+    ::selection {
+        background: transparent;
+    }
+    .mySlides-container {
+        overflow: auto;
+        padding-bottom: 0!important;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .mySlides {
+        width: 100%;
+    }
     @media screen and (min-width: 767px) {
         .textheight {
             height: 500px;
@@ -225,7 +237,6 @@ a.fa {
             }
         }
     }
-    .mySlides {display:none}
     .prev, .next {
         cursor: pointer;
         position: absolute;
@@ -254,8 +265,6 @@ a.fa {
         color: #f2f2f2;
         font-size: 12px;
         padding: 8px 12px;
-        position: absolute;
-        top: 0;
     }
     .dot {
         cursor: pointer;
@@ -270,19 +279,25 @@ a.fa {
     .active, .dot:hover {
         background-color: #bbb;
     }
-    .fade {
-        -webkit-animation-name: fade;
-        -webkit-animation-duration: 1.5s;
-        animation-name: fade;
-        animation-duration: 1.5s;
+    .image-animate {
+        float: right;
+        overflow: hidden;
+        animation-name: image_animate;
+        animation-duration: 2s;
     }
-    @-webkit-keyframes fade {
-        from {opacity: .4}
-        to {opacity: 1}
+    .animate_hide {
+        float: left;
+        overflow: hidden;
+        animation-name: image_animate_hide;
+        animation-duration: 2s;
     }
-    @keyframes fade {
-        from {opacity: .4}
-        to {opacity: 1}
+    @keyframes image_animate {
+        from {width: 0}
+        to {width: 100%}
+    }
+    @keyframes image_animate_hide {
+        from {width: 100%}
+        to {width: 0;}
     }
     @media only screen and (max-width: 300px) {
         .prev, .next, .text {font-size: 11px}

@@ -17,7 +17,7 @@
                 <div class="col-sm-6">
                     <h1>ABOUT ME</h1>
                     <div>
-                        Hey... I am Advaith A J. I am 15 years old boy who has intrest in Web page developing
+                        Hey... I am Advaith A J. I am 15 years old boy who has interest in Web page developing
                         <br /><br />
                         I have done many local works on different languages.<br />
                         Done many works on web, you can search my Github account to know. Some are listed in  the website.
@@ -61,18 +61,14 @@
             </div>
             <div class="thrid-parallax-writting">
                 <div class="news-show">
-                    <div class="w3-padding-32" style="overflow: hidden; padding-bottom: 0!important; padding-left: 40px; padding-right: 40px;">
-                        <?php $c = count($news); $i = 1; ?>
+                    <div class="w3-padding-32 mySlides-container">
+                        <div class="numbertext">Showing <span id="current-image-number"></span></div>
                         @foreach ($news as $new)
-                            <div class="mySlides fade in">
+                            <div class="mySlides image-animate">
                                 <div class="col-sm-7">
-                                    <?php
-                                        echo "<div class='numbertext'>" . $i . " / " . $c . "</div>";
-                                        $i++;
-                                    ?>
                                     @if ($new->type == 'image')
                                         <div style="height: 500px;">
-                                            <img src="{{ $new->attachment }}" style="width: 100%; height: 500px;">
+                                            <img src="{{ $new->attachment }}" style="width: 100%; height: 500px;" draggable="false">
                                         </div>
                                     @else
                                         <div style="height: 500px;">
@@ -109,13 +105,15 @@
                     <a href="https://www.youtube.com/channel/UCetLIJPB6gJI06jpi5XF3fg" class="w3-hover-text-red"><i class="fa fa-youtube"></i></a>
                     <a href="https://www.github.com/Advaith3600" class="w3-hover-text-black"><i class="fa fa-github"></i></a>
                 </div>
-                <p>Copyright © 2017 | All rights reserved |Developed by Advaith A J</p>
+                <p>Copyright © 2017 | All rights reserved | Developed by Advaith A J</p>
             </footer>
         </div>
         <script src="https://maps.googleapis.com/maps/api/js"></script>
         <script>
             var slideIndex = 1;
-            showSlides(slideIndex);
+            $(".mySlides:gt(0)").addClass("hide");
+            $('.dot:first-child').addClass('active');
+            $('#current-image-number').html("1 / " + document.getElementsByClassName("mySlides").length);
             function plusSlides(n) {
                 showSlides(slideIndex += n);
             }
@@ -129,14 +127,35 @@
                 if (n > slides.length) {slideIndex = 1}
                 if (n < 1) {slideIndex = slides.length}
                 for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
+                    slides[i].className = "mySlides";
+                    slides[i].className += " hide";
+                }
+                $('#current-image-number').html(slideIndex + " / " + document.getElementsByClassName("mySlides").length);
+                $('.prev, .next').attr('onclick', '');
+                try {
+                    slides[slideIndex-2].className = "mySlides animate_hide";
+                    $(".textheight").hide();
+                    setTimeout(function() {
+                        slides[slideIndex-2].className = "mySlides hide";
+                        $(".textheight").slideDown('medium');
+                        $('.prev').attr('onclick', 'plusSlides(-1)');
+                        $('.next').attr('onclick', 'plusSlides(1)');
+                    }, 2010);
+                } catch (e) {
+                    slides[slides.length-1].className = "mySlides animate_hide";
+                    $(".textheight").hide();
+                    setTimeout(function() {
+                        slides[slides.length-1].className = "mySlides hide";
+                        $(".textheight").slideDown('medium');
+                        $('.prev').attr('onclick', 'plusSlides(-1)');
+                        $('.next').attr('onclick', 'plusSlides(1)');
+                    }, 2010);
                 }
                 for (i = 0; i < dots.length; i++) {
                     dots[i].className = dots[i].className.replace(" active", "");
                 }
-                slides[slideIndex-1].style.display = "block";
+                slides[slideIndex-1].className = "mySlides image-animate";
                 dots[slideIndex-1].className += " active";
-                setTimeout(showSlides, 2000);
             }
             var myCenter = new google.maps.LatLng(8.4554519, 76.9499618);
             function initialize() {
