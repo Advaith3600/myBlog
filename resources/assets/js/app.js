@@ -19,6 +19,7 @@ Vue.component('chat-message', require('./components/Chat-Message.vue'));
 Vue.component('chat-log', require('./components/Chat-Log.vue'));
 Vue.component('chat-composer', require('./components/Chat-Composer.vue'));
 Vue.component('chat-user', require('./components/Chat-User.vue'));
+Vue.component('news', require('./components/News.vue'));
 
 const app = new Vue({
     el: '#app',

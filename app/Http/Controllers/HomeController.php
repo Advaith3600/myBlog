@@ -24,7 +24,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function welcome() {
-        $news = News::all()->sortByDesc('id');
+        $news = News::all();
         return view('welcome')->withNews($news);
     }
     public function index()

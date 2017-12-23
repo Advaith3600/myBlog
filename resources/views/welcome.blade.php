@@ -1,12 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Advaith A J</title>
-        @include('partials._head')
+        <link rel="icon" href="{{ asset('favicon.ico') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/w3.css') }}">
         <link rel="stylesheet" href="{{ asset('css/fa.css') }}">
+        <noscript>
+            <div class="noscript-bg container-fluid w3-red w3-padding text-center">
+                Please enable Javascript for the best experience.<br />
+                If you dont know how to enable Javascript then view <a href="https://www.google.co.in/#q=how+to+enable+javascript">this</a>
+            </div>
+        </noscript>
+        <script>
+            window.Laravel = {!! json_encode([
+                'csrfToken' => csrf_token(),
+            ]) !!};
+        </script>
     </head>
     <body>
-        @include('partials._navbar')
+        <div class="nav-side">
+            <ul>
+                <li><a href="{{ url('/contact_us') }}">Contact Us</a></li>
+                @if (Auth::guest())
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
+                @else
+                    <li><a href="{{ url('home') }}">Profile</a></li>
+                    <li><a href="{{ url('chat') }}">Public Chat</a></li>
+                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                @endif
+            </ul>
+        </div>
+        <div style="overflow: hidden;">
+            <nav class="nav">
+                <a href="{{ url('/') }}">
+                    <b>Advaith A J</b>
+                </a>
+                <div class="pull-right">
+                    <a href="#" class="toggle-button">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                    </a>
+                    <span>
+                        <a href="{{ url('/contact_us') }}">Contact Us</a>
+                        @if (Auth::check())
+                            <a href="{{ url('home') }}">Profile</a>
+                            <a href="{{ url('chat') }}">Public Chat</a>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    </span>
+                </div>
+            </nav>
+        </div>
         <div class="main-page-div">
             <div class="first-parallax">
                 <div style="position: absolute; left: 50%; top: 400px; transform: translate(-50%,0);">
@@ -26,9 +86,9 @@
                         <br /><br />
                         You can contact me through Facebook, Twitter, Whatsapp, Gmail, etc.
                         <div class="w3-margin-top">
-                            <a href="http://facebook.com/Advaith3600" class="fa fa-facebook" title="Facebook"></a>
+                            <a href="http://facebook.com/Aj3600" class="fa fa-facebook" title="Facebook"></a>
                             <a href="http://twitter.com/Advaith3600" class="fa fa-twitter" title="Twitter"></a>
-                            <a href="https://www.youtube.com/channel/UCetLIJPB6gJI06jpi5XF3fg" class="fa fa-youtube" title="YouTube"></a>
+                            <a href="https://www.youtube.com/c/aj3600" class="fa fa-youtube" title="YouTube"></a>
                             <a href="http://github.com/Advaith3600" class="fa fa-github" title="GitHub"></a>
                         </div>
                     </div>
@@ -59,104 +119,23 @@
                     <h1 class="w3-black w3-padding-24 container-fluid">NEWS / UPDATE</h1>
                 </div>
             </div>
-            <div class="thrid-parallax-writting">
-                <div class="news-show">
-                    <div class="w3-padding-32 mySlides-container">
-                        <div class="numbertext">Showing <span id="current-image-number"></span></div>
-                        @foreach ($news as $new)
-                            <div class="mySlides image-animate">
-                                <div class="col-sm-7">
-                                    @if ($new->type == 'image')
-                                        <div style="height: 500px;">
-                                            <img src="{{ $new->attachment }}" style="width: 100%; height: 500px;" draggable="false">
-                                        </div>
-                                    @else
-                                        <div style="height: 500px;">
-                                            <iframe src="{{ $new->attachment }}" style="width: 100%; height: 500px;" frameborder="0" allowfullscreen></iframe>
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="col-sm-5 textheight">
-                                    <div class="text-center w3-text-white w3-padding-16">
-                                        <div>
-                                            {{ $new->description }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                        <div class="col-sm-12 w3-padding-16" style="text-align:center">
-                            <?php
-                                $count = count($news) + 1;
-                                for ($i=1; $i < $count; $i++) {
-                                    echo "<span class='dot' onclick='currentSlide(" . $i . ")''></span>";
-                                }
-                            ?>
-                        </div>
-                    </div>
-                </div>
+            <div class="thrid-parallax-writting" id="app">
+                <news v-bind:news="{{ $news }}"></news>
             </div>
             <footer class="w3-center w3-padding-16 w3-opacity w3-hover-opacity-off" style="background-color: green; color: white!important">
                 <div class="w3-xlarge ">
-                    <a href="http://facebook.com/Advaith3600" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
+                    <a href="http://facebook.com/Aj3600" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
                     <a href="http://twitter.com/Advaith3600" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
-                    <a href="https://www.youtube.com/channel/UCetLIJPB6gJI06jpi5XF3fg" class="w3-hover-text-red"><i class="fa fa-youtube"></i></a>
+                    <a href="https://www.youtube.com/c/aj3600" class="w3-hover-text-red"><i class="fa fa-youtube"></i></a>
                     <a href="https://www.github.com/Advaith3600" class="w3-hover-text-black"><i class="fa fa-github"></i></a>
                 </div>
                 <p>Copyright © 2017 | All rights reserved | Developed by Advaith A J</p>
             </footer>
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/pace.js') }}"></script>
         <script src="https://maps.googleapis.com/maps/api/js"></script>
         <script>
-            var slideIndex = 1;
-            $(".mySlides:gt(0)").addClass("hide");
-            $('.dot:first-child').addClass('active');
-            $('#current-image-number').html("1 / " + document.getElementsByClassName("mySlides").length);
-            function plusSlides(n) {
-                showSlides(slideIndex += n);
-            }
-            function currentSlide(n) {
-                showSlides(slideIndex = n);
-            }
-            function showSlides(n) {
-                var i;
-                var slides = document.getElementsByClassName("mySlides");
-                var dots = document.getElementsByClassName("dot");
-                if (n > slides.length) {slideIndex = 1}
-                if (n < 1) {slideIndex = slides.length}
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].className = "mySlides";
-                    slides[i].className += " hide";
-                }
-                $('#current-image-number').html(slideIndex + " / " + document.getElementsByClassName("mySlides").length);
-                $('.prev, .next').attr('onclick', '');
-                try {
-                    slides[slideIndex-2].className = "mySlides animate_hide";
-                    $(".textheight").hide();
-                    setTimeout(function() {
-                        slides[slideIndex-2].className = "mySlides hide";
-                        $(".textheight").slideDown('medium');
-                        $('.prev').attr('onclick', 'plusSlides(-1)');
-                        $('.next').attr('onclick', 'plusSlides(1)');
-                    }, 2010);
-                } catch (e) {
-                    slides[slides.length-1].className = "mySlides animate_hide";
-                    $(".textheight").hide();
-                    setTimeout(function() {
-                        slides[slides.length-1].className = "mySlides hide";
-                        $(".textheight").slideDown('medium');
-                        $('.prev').attr('onclick', 'plusSlides(-1)');
-                        $('.next').attr('onclick', 'plusSlides(1)');
-                    }, 2010);
-                }
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                }
-                slides[slideIndex-1].className = "mySlides image-animate";
-                dots[slideIndex-1].className += " active";
-            }
             var myCenter = new google.maps.LatLng(8.4554519, 76.9499618);
             function initialize() {
                 var mapProp = {
@@ -173,6 +152,23 @@
                 marker.setMap(map);
             }
             google.maps.event.addDomListener(window, 'load', initialize);
+            $(document).ready(function(){
+                $(window).scroll(function (event) {
+                    var sc = $(window).scrollTop();
+                    if (sc > 0) {
+                        $('nav.nav').addClass('scroll').addClass('w3-animate-top').addClass('w3-card-4');
+                    }
+                    else {
+                        $('nav.nav').removeClass('scroll').removeClass('w3-animate-top').removeClass('w3-card-4');
+                    }
+                });
+                $('a.toggle-button').click(function(e) {
+                    e.preventDefault();
+                    $('a.toggle-button').toggleClass("change");
+                    $('.nav').toggleClass('stop');
+                    $('.nav-side').slideToggle('medium');
+                });
+            })
         </script>
     </body>
 </html>
