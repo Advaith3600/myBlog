@@ -4,6 +4,7 @@
         <title>Public Chat</title>
         @include('partials._head')
         <meta name="username" content="{{ Auth::user()->name }}" />
+        <meta name="loggedIn" content="true">
     </head>
     <body style="min-height: 100vh; background: url(/images/8.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
         @include('partials._navbar')

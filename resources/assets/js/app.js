@@ -30,9 +30,7 @@ const app = new Vue({
     methods: {
         addMessage(message) {
             this.messages.push(message);
-            axios.post('/chat/messages', message).then(response => {
-
-            });
+            axios.post('/chat/messages', message);
         },
         ViewUsers(e) {
             e.preventDefault();
@@ -40,26 +38,29 @@ const app = new Vue({
         }
     },
     created() {
-        axios.get('/chat/messages').then(response => {
-            this.messages = response.data;
-        });
-
-        Echo.join('chatroom')
-            .here((users) => {
-                this.usersInRoom = users;
-            })
-            .joining((user) => {
-                this.usersInRoom.push(user);
-            })
-            .leaving((user) => {
-                this.usersInRoom = this.usersInRoom.filter(u => u!= user);
-            })
-            .listen('ChatPosted', (e) => {
-                this.messages.push({
-                    message: e.chat.message,
-                    user: e.user
-                });
-                $(".panel-body").animate({ scrollTop: $(".panel-body").height() }, 1000);
+        const loggedIn = $('meta[name=loggedIn]').attr('content');
+        if (loggedIn != 'undefined') {
+            axios.get('/chat/messages').then(response => {
+                this.messages = response.data;
             });
+
+            Echo.join('chatroom')
+                .here((users) => {
+                    this.usersInRoom = users;
+                })
+                .joining((user) => {
+                    this.usersInRoom.push(user);
+                })
+                .leaving((user) => {
+                    this.usersInRoom = this.usersInRoom.filter(u => u!= user);
+                })
+                .listen('ChatPosted', (e) => {
+                    this.messages.push({
+                        message: e.chat.message,
+                        user: e.user
+                    });
+                    $(".panel-body").animate({ scrollTop: $(".panel-body").height() }, 1000);
+                });
+        }
     }
 });
