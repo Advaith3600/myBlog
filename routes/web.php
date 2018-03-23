@@ -30,3 +30,5 @@ Route::group(['middleware' => 'auth'], function() {
 
 Route::get('/contact_us', 'HomeController@getContact_us');
 Route::post('/contact_us', 'HomeController@postContact_us');
+
+Route::post('/news/getAll', 'HomeController@getNews');

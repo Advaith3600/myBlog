@@ -120,7 +120,7 @@
                 </div>
             </div>
             <div class="thrid-parallax-writting" id="app">
-                <news v-bind:news="{{ $news }}"></news>
+                <news></news>
             </div>
             <footer class="w3-center w3-padding-16 w3-opacity w3-hover-opacity-off" style="background-color: green; color: white!important">
                 <div class="w3-xlarge ">

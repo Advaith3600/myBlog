@@ -1,8 +1,11 @@
 <template lang="html">
     <div class="news-show">
-        <div class="w3-padding-32 mySlides-container">
-            <div class="numbertext">Showing <span id="current-image-number"></span></div>
-            <div class="mySlides image-animate" v-for="info in orderedNews">
+        <div class="w3-padding-32 mySlides-container w3-text-white text-center" v-if="loading" style="padding: 128px 0!important;">
+            <i class="fa fa-spinner fa-3x fa-spin"></i>
+        </div>
+        <div class="w3-padding-32 mySlides-container" v-else>
+            <div class="numbertext">Showing <span id="current-image-number">1 / {{ news.length }}</span></div>
+            <div class="mySlides image-animate" v-for="(info, index) in news" :class="index == 0 ? '' : 'hide'">
                 <div class="col-sm-7">
                     <div style="height: 500px;" v-if="info.type == 'image'">
                         <img :src="info.attachment" style="width: 100%; height: 500px;" draggable="false">
@@ -22,7 +25,7 @@
             <a class="prev" v-on:click="plusSlides(-1)">&#10094;</a>
             <a class="next" v-on:click="plusSlides(1)">&#10095;</a>
             <div class="col-sm-12 w3-padding-16" style="text-align:center">
-                    <span v-for="(i, m) in orderedNews" class="dot" v-on:click="currentSlide(m)"></span>
+                    <span v-for="(i, m) in news" class="dot" v-on:click="currentSlide(m)" :class="m == 0 ? 'active' : ''"></span>
             </div>
         </div>
     </div>
@@ -30,9 +33,10 @@
 
 <script>
     export default {
-        props: ['news'],
         data() {
             return {
+                loading: true,
+                news: '',
                 slideIndex: 1
             }
         },
@@ -78,15 +82,12 @@
                 dots[SI-1].className += " active";
             }
         },
-        computed: {
-            orderedNews: function() {
-                return _.orderBy(this.news, 'id', 'desc');
-            }
-        },
         mounted() {
-            $(".mySlides:gt(0)").addClass("hide");
-            $('.dot:first-child').addClass('active');
-            $('#current-image-number').html("1 / " + document.getElementsByClassName("mySlides").length);
+            var vm = this;
+            axios.post('/news/getAll').then(function(response) {
+                vm.news = _.orderBy(response.data, 'id', 'desc');
+                vm.loading = false;
+            });
         }
     }
 </script>

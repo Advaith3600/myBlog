@@ -12,29 +12,23 @@ use App\News;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function welcome() {
-        $news = News::all();
-        return view('welcome')->withNews($news);
+    public function welcome()
+    {
+        return view('welcome');
     }
+
     public function index()
     {
         return view('home');
     }
-    public function getContact_us() {
+
+    public function getContact_us()
+    {
         return view('contact_us.index');
     }
-    public function postContact_us(Request $request) {
+
+    public function postContact_us(Request $request)
+    {
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
@@ -50,7 +44,9 @@ class HomeController extends Controller
         Session::flash('success', 'Email was successfully send!');
         return redirect('contact_us');
     }
-    public function updateProfileInfo(Request $request) {
+
+    public function updateProfileInfo(Request $request)
+    {
         $id = Auth::user()->id;
         $this->validate($request, [
             'name' => 'required',
@@ -68,5 +64,10 @@ class HomeController extends Controller
 
         Session::flash('success', 'User have been successfully updated');
         return redirect('home');
+    }
+
+    public function getNews()
+    {
+        return News::all()->toJSON();
     }
 }
